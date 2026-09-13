@@ -16,6 +16,13 @@ class Settings(BaseSettings):
     POSTGRES_HOST: str = "localhost"
     POSTGRES_PORT: int = 5432
 
+    # JWT — secret must be overridden via .env in all real environments.
+    # Generate a strong value with: openssl rand -hex 32
+    JWT_SECRET_KEY: str = "CHANGE_ME_use_openssl_rand_hex_32"
+    JWT_ALGORITHM: str = "HS256"
+    # Access token lifetime in minutes (default 30 minutes).
+    JWT_ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
+
     @property
     def DATABASE_URL(self) -> str:
         """Async-compatible SQLAlchemy database URL."""
